@@ -14,6 +14,9 @@ class DeckController extends Controller
     public function index()
     {
         //
+        $decks = Deck::all();
+
+        return view('pages.deck', ["decks" => $decks]);
     }
 
     /**
