@@ -11,12 +11,10 @@ class DeckController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
+    public function index(){
         //
-        $decks = Deck::all();
-
-        return view('pages.deck', ["decks" => $decks]);
+        $decks = Deck::where('user_id', auth()->id())->get();
+        return view('pages.deck', compact('decks'));
     }
 
     /**
@@ -25,6 +23,7 @@ class DeckController extends Controller
     public function create()
     {
         //
+        return view('pages.deck-create'); // cria uma view específica para criar deck
     }
 
     /**
@@ -33,6 +32,16 @@ class DeckController extends Controller
     public function store(StoreDeckRequest $request)
     {
         //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        Deck::create([
+            'name' => $request->name,
+            'user_id' => auth()->id(),
+        ]);
+
+        return redirect()->route('deck.index')->with('success', 'Deck criado com sucesso!');
     }
 
     /**

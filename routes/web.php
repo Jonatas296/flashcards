@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DeckController;
+use App\Http\Controllers\CardController;
+use App\Http\Controllers\StudyController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,6 +20,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('/deck', DeckController::class);
+
+    Route::resource('/card', CardController::class);
+    Route::get('/study', [CardController::class, 'studyAll'])->name('study.all');
+    Route::get('/study/deck/{deck}', [CardController::class, 'studyDeck'])->name('study.deck');
+
 });
 
 require __DIR__.'/auth.php';
