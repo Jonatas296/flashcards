@@ -1,47 +1,41 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Criar Carta
-        </h2>
-    </x-slot>
+    <link rel="stylesheet" href="{{ asset('css/card.css') }}">
 
-    <div class="py-12 max-w-3xl mx-auto bg-white shadow rounded p-6">
+    <div class="py-12 max-w-3xl mx-auto rounded p-6">
         <form action="{{ route('card.store') }}" method="POST">
             @csrf
 
-            <!-- Select Deck -->
+            <!-- Título FlashCards -->
+            <h1 class="text-4xl font-extrabold text-center mb-6 text-green-400">
+                Flash<span class="text-green-200">Cards</span>
+            </h1>
+
+            <!-- Deck -->
             <div class="mb-4">
                 <label class="block mb-1 font-bold">Deck</label>
-                <select name="deck_id" class="w-full border rounded px-2 py-1 bg-white text-gray-800 leading-tight">
-                    <option value="">Selecione um deck</option>
-                    @foreach($decks as $deck)
-                        <option value="{{ $deck->id }}">{{ $deck->name }}</option>
-                    @endforeach
-                </select>
-                @error('deck_id') <span class="text-red-500">{{ $message }}</span> @enderror
+                <input type="text" name="deck" value="{{ old('deck') }}">
+                @error('deck') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
 
-
-            <!-- Front -->
+            <!-- Frente -->
             <div class="mb-4">
-                <label class="block mb-1 font-bold">Front (pergunta)</label>
-                <input type="text" name="front" class="w-full border rounded px-2 py-1" value="{{ old('front') }}">
+                <label class="block mb-1 font-bold">Frente</label>
+                <input type="text" name="front" value="{{ old('front') }}">
                 @error('front') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
 
-            <!-- Back -->
+            <!-- Verso -->
             <div class="mb-4">
-                <label class="block mb-1 font-bold">Back (resposta)</label>
-                <textarea name="back" class="w-full border rounded px-2 py-1">{{ old('back') }}</textarea>
+                <label class="block mb-1 font-bold">Verso</label>
+                <textarea name="back">{{ old('back') }}</textarea>
                 @error('back') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
 
             <!-- Botões -->
             <div class="flex space-x-2">
-                <button type="submit" class="px-4 py-2 bg-black text-gray-800 leading-tight">Criar</button>
-                <a href="{{ route('card.index') }}" class="px-4 py-2 bg-black text-gray-800 leading-tight">Cancelar</a>
+                <button type="submit">Criar</button>
+                <a href="{{ route('card.index') }}">Cancelar</a>
             </div>
-
         </form>
     </div>
 </x-app-layout>
