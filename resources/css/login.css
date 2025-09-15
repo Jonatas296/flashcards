@@ -1,0 +1,128 @@
+/* Fundo */
+.login-container {
+    height: 90vh; /* reduz altura */
+    background-color: #1e5674;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* evita barra de rolagem */
+}
+
+.card {
+    width: 100px;
+    height: 140px;
+    background-color: #b7f5b7;
+    border-radius: 6px;
+    position: absolute;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+/* Posições das cartas sobrepostas */
+.card1 {
+    transform: rotate(-15deg) translate(-60px, -10px);
+    z-index: 1;
+}
+.card2 {
+    transform: rotate(-5deg) translate(-30px, 0);
+    z-index: 2;
+}
+.card3 {
+    transform: rotate(10deg) translate(0, 10px);
+    z-index: 0;
+}
+
+/* Caixa central */
+.login-box {
+    width: 400px;
+    padding: 2rem;
+    text-align: center;
+    background: #1e5674;
+    border-radius: 10px;
+    box-shadow: none;
+    border: none;
+    color: #fff;
+}
+
+/* Título */
+.login-box h1 {
+    font-size: 2.5rem;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 1rem;
+}
+
+.login-box h1 .flash {
+    color: #38d987; /* verde vibrante */
+}
+
+.login-box h1 .cards {
+    color: #C7F9CC; /* verde claro igual botão */
+}
+
+.login-box h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Inputs */
+.login-box input {
+    width: 100%;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    background-color: #1e5674;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.login-box input::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+/* Erros */
+.error {
+    color: #ffb3b3;
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
+    display: block;
+}
+
+/* Link de registro */
+.register-link {
+    display: block;
+    margin: 1rem 0;
+    color: #38d987;
+    text-decoration: none;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}
+
+/* Botão */
+.login-box button {
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 6px;
+    border: none;
+    font-weight: bold;
+    background-color: #C7F9CC; /* verde claro */
+    color: #1e5674;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-box button:hover {
+    background-color: #a6f3b0;
+}
+
+
+/* Título */
+.login-box h1 {
+    font-size: 2.5rem;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 1rem;
+}
+
