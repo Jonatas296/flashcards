@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DeckController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\StudyController;
+use App\Http\Controllers\HistoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,9 +23,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('/deck', DeckController::class);
 
     Route::resource('/card', CardController::class);
-    Route::get('/study', [CardController::class, 'studyAll'])->name('study.all');
-    Route::get('/study/deck/{deck}', [CardController::class, 'studyDeck'])->name('study.deck');
-
+    
+    Route::get('/study', [HistoryController::class, 'index'])->name('study.all');
+    Route::post('/history', [HistoryController::class, 'store'])->name('history.store');
+    //ver se precisa ainda dessa rota
+    Route::get('/study/{card}/show_back', [HistoryController::class, 'showBack'])->name('study.show_back');
 });
 
 require __DIR__.'/auth.php';

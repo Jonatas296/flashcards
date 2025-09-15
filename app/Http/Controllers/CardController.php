@@ -16,15 +16,7 @@ class CardController extends Controller {
 
         return view('pages.study', ['cards' => $cards]);
     }
-
-    /**
-     * Estudo das cartas de um deck específico
-     */
-    public function studyDeck($deckId) {
-        $deck = Deck::with('cards')->findOrFail($deckId);
-
-        return view('pages.study', ['cards' => $deck->cards]);
-    }
+    
 
     /**
      * Display a listing of the resource.
@@ -67,6 +59,14 @@ class CardController extends Controller {
 
         return redirect()->route('card.index')->with('success', 'Carta criada com sucesso!');
     }
+
+    public function showBack($cardId) {
+        $cards = Card::where('id', $cardId)->get(); // pega a carta
+        session(['show_back' => true]); // marca que deve mostrar verso
+        return view('pages.study', compact('cards'));
+    }   
+
+
 
     /**
      * Display the specified resource.

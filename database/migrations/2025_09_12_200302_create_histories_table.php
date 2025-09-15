@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('histories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('card_id');
             $table->enum('classification', [1, 2, 3, 4]); //Facil, Bom, Dificil e Nao Lembro.
+            $table->timestamp('reviewed_at')->nullable();
+            $table->timestamp('next_review_at')->nullable();
             $table->timestamps();
         });
     }

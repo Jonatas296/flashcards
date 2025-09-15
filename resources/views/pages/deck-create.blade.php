@@ -19,8 +19,8 @@
             <!-- Nome do Deck -->
             <div class="mb-4">
                 <label class="block mb-1 font-bold">Nome do Deck</label>
-                <input type="text" name="name" class="w-full border rounded px-2 py-1" value="{{ old('name') }}">
-                @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                <input type="text" name="nome" class="w-full border rounded px-2 py-1" value="{{ old('nome') }}">
+                @error('nome') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
 
             <!-- Botões -->

@@ -29,15 +29,14 @@ class DeckController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreDeckRequest $request)
-    {
+    public function store(StoreDeckRequest $request) {
         //
         $request->validate([
-            'name' => 'required|string|max:255',
+            'nome' => 'required|string|max:255',
         ]);
 
         Deck::create([
-            'name' => $request->name,
+            'nome' => $request->nome,
             'user_id' => auth()->id(),
         ]);
 
@@ -63,9 +62,20 @@ class DeckController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDeckRequest $request, Deck $deck)
-    {
+    public function update(UpdateDeckRequest $request, Deck $deck) {
         //
+        $request->validate([
+        'nome' => 'required|string|max:255',]);
+
+        if ($deck->user_id !== auth()->id()) {
+            abort(403, 'Você não tem permissão para editar este deck.');
+        }
+
+        $deck->update([
+        'nome' => $request->nome,]);
+
+        return redirect()->route('deck.index')->with('success', 'Deck atualizado com sucesso!');
+        
     }
 
     /**
