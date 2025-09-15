@@ -5,32 +5,30 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+    
+    <link rel="stylesheet" href="{{ asset('css/flashcards.css') }}">
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div class="flashcards-container">
 
-                    <!-- Criar Card -->
-                    <a href="{{ route('card.index') }}" 
-                       class="flex items-center justify-center px-4 py-6 bg-blue-600 text-gray-800 leading-tight">
-                        Criar Card
-                    </a>
+        <!-- Botão Adicionar -->
+        <div class="add-card">
+            <a href="{{ route('card.index') }}">Adicionar Cartão +</a>
+        </div>
 
-                    <!-- Estudar -->
-                    <a href="{{ route('study.all') }}" 
-                       class="flex items-center justify-center px-4 py-6 bg-green-600 text-gray-800 leading-tight">
-                        Estudar
-                    </a>
+        <div class="content">
+            <!-- Lado Esquerdo -->
+            <div class="left">
+                <h3>Decks de Estudo</h3>
 
-                    <!-- Ver Todos os Decks -->
-                    <a href="{{ route('deck.index') }}" 
-                       class="flex items-center justify-center px-4 py-6 bg-gray-600 text-gray-800 leading-tight">
-                        Ver Decks
-                    </a>
-
+                <div class="buttons">
+                    <a href="{{ route('study.all') }}" class="btn study">Estudar</a>
+                    <a href="{{ route(name: 'deck.index') }}" class="btn all">Ver Todos</a>
                 </div>
+            </div>
 
+            <!-- Lado Direito -->
+            <div class="right">
+                <img src="{{ asset('images/flashcards.png') }}" alt="Flashcards">
             </div>
         </div>
     </div>
