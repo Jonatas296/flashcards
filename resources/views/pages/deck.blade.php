@@ -1,74 +1,50 @@
 <x-app-layout>
+    <!-- Header -->
     <x-slot name="header">
-        <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Meus Decks
-            </h2>
-            <a href="{{ route('deck.create') }}" 
-               class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
-               Adicionar Deck
-            </a>
+        <div class="header-decks">
+            <h2 class="titulo-decks">Lista de Decks</h2>
+            <a href="{{ route('deck.create') }}" class="btn-add-deck">Adicionar Deck +</a>
         </div>
     </x-slot>
 
-    <div class="py-12 max-w-3xl mx-auto">
-
-        <!-- Mensagem de sucesso -->
+    <!-- Conteúdo -->
+    <div class="conteudo-decks">
         @if(session('success'))
-            <div class="bg-green-100 text-green-700 p-3 rounded mb-4 font-medium">
-                {{ session('success') }}
-            </div>
+            <div class="alert-success">{{ session('success') }}</div>
         @endif
 
-        <!-- Mensagem de erro -->
-        @if(session('error'))
-            <div class="bg-red-100 text-red-700 p-3 rounded mb-4 font-medium">
-                {{ session('error') }}
-            </div>
+        @if($decks->isEmpty())
+            <p class="no-decks">Nenhum deck encontrado. Crie um novo deck para começar!</p>
         @endif
 
-        <!-- Lista de decks -->
-        <div class="space-y-4">
-            @forelse($decks as $deck)
-                <div class="flex items-center justify-between bg-white shadow rounded p-4">
-
-                    <!-- Nome do deck editável -->
-                    <form action="{{ route('deck.update', $deck->id) }}" method="POST" class="flex-1">
+        <div class="grid-decks">
+            @foreach($decks as $deck)
+                <div class="card-deck">
+                    <!-- form de update com id para submissão via botão externo -->
+                    <form id="update-{{ $deck->id }}" action="{{ route('deck.update', $deck->id) }}" method="POST" class="form-deck">
                         @csrf
                         @method('PUT')
-                        <input type="text"
-                               name="nome"
-                               value="{{ $deck->nome }}"
-                               class="border-b border-gray-300 text-lg font-bold w-full focus:outline-none focus:border-green-400"
-                               onchange="this.form.submit()"
-                               title="Clique e edite o nome do deck">
+
+                        <!-- nome (clicar para editar) -->
+                        <input type="text" name="nome" value="{{ $deck->nome }}" class="input-deck">
                     </form>
 
-                    <div class="flex items-center space-x-2">
-                        <!-- Botão Ver Cards -->
-                        <a href="{{ route('deck.show', $deck->id) }}" 
-                           class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
-                           Ver Cards
-                        </a>
+                    <!-- área de ícones centralizada -->
+                    <div class="card-icons">
+                        <!-- botão salva o form de update (usa attribute form="...") -->
+                        <button type="submit" form="update-{{ $deck->id }}" class="icon-save" title="Salvar">
+                            💾
+                        </button>
 
-                        <!-- Botão deletar -->
-                        <form action="{{ route('deck.destroy', $deck->id) }}" method="POST"
-                              onsubmit="return confirm('Tem certeza que deseja deletar este deck?');">
+                        <!-- delete (form separado) -->
+                        <form action="{{ route('deck.destroy', $deck->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja deletar este deck?');" class="inline-delete">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-500 hover:text-red-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="M6 18L18 6M6 6l12 12"/>
-                                </svg>
-                            </button>
+                            <button type="submit" class="icon-delete" title="Deletar">🗑️</button>
                         </form>
                     </div>
                 </div>
-            @empty
-                <p class="text-gray-500 text-center">Você ainda não possui decks.</p>
-            @endforelse
+            @endforeach
         </div>
     </div>
 </x-app-layout>
