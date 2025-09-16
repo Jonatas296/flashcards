@@ -4,6 +4,7 @@ import '../css/dashboard.css'
 import '../css/login.css'
 import '../css/deck.css'
 import '../css/register.css'
+import '../css/study.css'
 
 import Alpine from 'alpinejs';
 
