@@ -1,81 +1,145 @@
-/* Fundo */
-body {
-    background-color: #1e5674;
-    font-family: Arial, sans-serif;
+/* página */
+.conteudo-decks {
+    background-color: #2f9e9e;   /* teal */
+    padding: 36px;
+    min-height: calc(100vh - 120px);
 }
 
-/* Container */
-.max-w-md {
-    background-color: #1e5674;
-    border-radius: 10px;
-    padding: 2rem;
-    width: 400px;
-    margin: 2rem auto;
-    box-shadow: none;
-    border: none;
+/* header */
+.header-decks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    gap: 12px;
 }
-
-/* Título */
-h1 {
-    font-size: 2.5rem;
-    font-family: 'Roboto', sans-serif;
-    margin-bottom: 1rem;
-    color: #38d987;
-    text-align: center;
-    margin-bottom: 1.5rem;
+.titulo-decks {
+    font-size: 34px;
+    font-weight: 800;
+    font-style: italic;
+    color: #2f9e9e;
+    margin: 0;
+    letter-spacing: -0.4px;
 }
-
-/* Labels */
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
+.btn-add-deck {
+    background-color: #174d66;
     color: #fff;
-}
-
-/* Inputs */
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    width: 100%;
-    border: 1px solid #fff;
-    border-radius: 6px;
-    padding: 0.6rem;
-    margin-bottom: 1rem;
-    background-color: #1e5674;
-    color: #fff;
-    font-size: 1rem;
-}
-
-/* Botões */
-button,
-a {
-    display: inline-block;
-    padding: 0.7rem 1.2rem;
-    border-radius: 6px;
-    font-weight: bold;
+    padding: 10px 18px;
+    border-radius: 28px;
+    font-weight: 700;
     text-decoration: none;
-    transition: 0.3s ease;
+}
+.btn-add-deck:hover { 
+    background-color: #1f5f7a; 
 }
 
-/* Botão Registrar */
-button[type="submit"] {
-    background-color: #b7f5b7;
-    color: #1e5674;
+/* mensagens */
+.alert-success {
+    background: #e6ffef;
+    color: #065f46;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+}
+.alert-error {
+    background: #ffe6e6;
+    color: #b91c1c;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+}
+.no-decks { 
+    color: rgba(255,255,255,0.95); 
+    font-style: italic; 
+}
+
+/* grid */
+.grid-decks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+    margin-top: 12px;
+}
+
+/* card */
+.card-deck {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 18px;
+    height: 210px;
+    position: relative;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+}
+
+/* input (título dentro do cartão) */
+.input-deck {
     border: none;
-}
-
-button[type="submit"]:hover {
-    background-color: #96e696;
-}
-
-/* Botão Link */
-a {
-    background-color: transparent;
+    background: #174d66;    
     color: #fff;
-    border: 1px solid #fff;
+    padding: 12px 14px;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: 700;
+    width: 60%;
+    outline: none;
 }
 
-a:hover {
-    background-color: rgba(255,255,255,0.1);
+/* área dos botões/icons centralizados */
+.card-icons {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* botão "Ver cards" */
+.icon-save {
+    background: #1e5674;    /* nova cor */
+    color: #fff;            /* texto branco */
+    border: none;
+    cursor: pointer;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+}
+.icon-save:hover {
+    transform: translateY(-2px);
+    background: #16506a; /* cor um pouco mais escura ao passar o mouse */
+}
+
+/* botão excluir (caso use depois) */
+.icon-delete {
+    background: #d8f8db;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon-delete:hover { 
+    transform: translateY(-2px); 
+    color: #dc2626; 
+}
+
+/* responsividade */
+@media (max-width: 1000px) {
+    .grid-decks { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+    .grid-decks { grid-template-columns: 1fr; }
+    .titulo-decks { font-size: 28px; }
 }
