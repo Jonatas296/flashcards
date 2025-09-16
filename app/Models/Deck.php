@@ -3,13 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Deck extends Model {
-    //
-    protected $fillable = ['nome', 'user_id']; // adiciona user_id se quiser decks por usuário
+class Deck extends Model
+{
+    use HasFactory;
 
-    public function cards(){
+    protected $fillable = ['nome', 'user_id'];
+
+    // Relacionamento com Card
+    public function cards()
+    {
         return $this->hasMany(Card::class);
     }
-
+    
 }
+

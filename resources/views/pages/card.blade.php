@@ -2,6 +2,14 @@
     <link rel="stylesheet" href="{{ asset('css/card.css') }}">
 
     <div class="py-12 max-w-3xl mx-auto rounded p-6">
+
+        <!-- Feedback de sucesso -->
+        @if(session('success'))
+            <div class="bg-green-100 text-green-700 p-3 rounded mb-4 font-medium">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <form action="{{ route('card.store') }}" method="POST">
             @csrf
 
@@ -42,7 +50,7 @@
                     Criar
                 </button>
                 <a href="{{ route('dashboard') }}" class="px-4 py-2 bg-gray-400 text-gray-800 rounded">
-                    Cancelar
+                    Voltar
                 </a>
             </div>
         </form>

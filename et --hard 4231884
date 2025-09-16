@@ -1,0 +1,79 @@
+[33mcommit 4231884a8f48b33c62a2a99fc887dab2794dbc50[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author:     Jonatas296 <jonatassilvadamata@gmail.com>
+AuthorDate: 2025-09-16 13:45:22 -0300
+Commit:     Jonatas296 <jonatassilvadamata@gmail.com>
+CommitDate: 2025-09-16 13:45:22 -0300
+
+    Alteracao no Models/Card.php
+
+[33mcommit 908c0535534197bd68ffed629d975393018d1783[m
+Author:     deniselmatos <denise.matos39@aluno.ifce.edu.br>
+AuthorDate: 2025-09-15 19:54:19 -0300
+Commit:     deniselmatos <denise.matos39@aluno.ifce.edu.br>
+CommitDate: 2025-09-15 19:54:19 -0300
+
+    Atualizando requests
+
+[33mcommit 33c81d9c3cad4ad2321147e54ff5afe7f47230c5[m
+Author:     deniselmatos <denise0matosl@gmail.com>
+AuthorDate: 2025-09-15 16:33:14 -0300
+Commit:     deniselmatos <denise0matosl@gmail.com>
+CommitDate: 2025-09-15 16:33:14 -0300
+
+    front end tela de login
+
+[33mcommit 274b3230e07accce6c34efa6a69b3300a0411f44[m
+Author:     Lana Liz <lanaliztorres@gmail.com>
+AuthorDate: 2025-09-15 15:48:42 -0300
+Commit:     Lana Liz <lanaliztorres@gmail.com>
+CommitDate: 2025-09-15 15:48:42 -0300
+
+    Commit tela dashboard
+
+[33mcommit 51978df9082f68510ba54e784be297682df8b15d[m
+Author:     Jonatasdev296 <jonatassilvadamata@gmail.com>
+AuthorDate: 2025-09-15 13:54:25 -0300
+Commit:     Jonatasdev296 <jonatassilvadamata@gmail.com>
+CommitDate: 2025-09-15 13:54:25 -0300
+
+    Back de todas as telas feito
+
+[33mcommit f88d985c996a80ab3482efdda174f5980bff02f9[m
+Author:     Lana Liz <lanaliztorres@gmail.com>
+AuthorDate: 2025-09-13 22:58:25 -0300
+Commit:     Lana Liz <lanaliztorres@gmail.com>
+CommitDate: 2025-09-13 22:58:25 -0300
+
+    Meu commit
+
+[33mcommit b0e65b689dc62460835a96ae4a81745744c47a63[m
+Author:     Lana Liz <lanaliztorres@gmail.com>
+AuthorDate: 2025-09-13 22:33:16 -0300
+Commit:     Lana Liz <lanaliztorres@gmail.com>
+CommitDate: 2025-09-13 22:33:16 -0300
+
+    Meu commit
+
+[33mcommit 3526ae55060cc72fb865d0859e25331556f1093e[m
+Author:     Jonatasdev296 <jonatassilvadamata@gmail.com>
+AuthorDate: 2025-09-13 18:26:38 -0300
+Commit:     Jonatasdev296 <jonatassilvadamata@gmail.com>
+CommitDate: 2025-09-13 18:26:38 -0300
+
+    Atualizacao controllers e views
+
+[33mcommit 826aaee2054086c63facc18293e92165aad0be67[m
+Author:     Jonatasdev296 <jonatassilvadamata@gmail.com>
+AuthorDate: 2025-09-12 17:50:38 -0300
+Commit:     Jonatasdev296 <jonatassilvadamata@gmail.com>
+CommitDate: 2025-09-12 17:50:38 -0300
+
+    Criação da View de Deck
+
+[33mcommit b3c5beba69421c5c1f565d3261a2e79fa320ddad[m
+Author:     Jonatasdev296 <jonatassilvadamata@gmail.com>
+AuthorDate: 2025-09-12 17:19:37 -0300
+Commit:     Jonatasdev296 <jonatassilvadamata@gmail.com>
+CommitDate: 2025-09-12 17:19:37 -0300
+
+    first commit

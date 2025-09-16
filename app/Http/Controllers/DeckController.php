@@ -46,9 +46,10 @@ class DeckController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Deck $deck)
-    {
+    public function show(Deck $deck){
         //
+        $cards = $deck->cards()->get(); // pega todos os cards do deck
+        return view('pages.deck_card', compact('deck', 'cards'));
     }
 
     /**
@@ -84,5 +85,15 @@ class DeckController extends Controller
     public function destroy(Deck $deck)
     {
         //
-    }
+        // Verifica se o deck pertence ao usuário logado
+        if ($deck->user_id !== auth()->id()) {
+            abort(403, 'Você não tem permissão para deletar este deck.');
+        }
+
+        // Deleta o deck
+        $deck->delete();
+
+        // Redireciona com feedback
+        return redirect()->route('deck.index')->with('success', 'Deck removido com sucesso!');
+        }
 }

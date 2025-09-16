@@ -2,16 +2,16 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Meus Decks
+                Cards do Deck: {{ $deck->nome }}
             </h2>
-            <a href="{{ route('deck.create') }}" 
+            <a href="{{ route('card.create') }}" 
                class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
-               Adicionar Deck
+               Adicionar Card
             </a>
         </div>
     </x-slot>
 
-    <div class="py-12 max-w-3xl mx-auto">
+    <div class="py-12 max-w-3xl mx-auto space-y-4">
 
         <!-- Mensagem de sucesso -->
         @if(session('success'))
@@ -27,33 +27,24 @@
             </div>
         @endif
 
-        <!-- Lista de decks -->
+        <!-- Lista de cards -->
         <div class="space-y-4">
-            @forelse($decks as $deck)
-                <div class="flex items-center justify-between bg-white shadow rounded p-4">
+            @forelse($cards as $card)
+                <div class="bg-white shadow rounded p-4 flex justify-between items-center">
+                    <div>
+                        <h3 class="font-bold text-lg">{{ $card->front }}</h3>
+                        <p class="text-gray-500 mt-1">{{ $card->back }}</p>
+                    </div>
 
-                    <!-- Nome do deck editável -->
-                    <form action="{{ route('deck.update', $deck->id) }}" method="POST" class="flex-1">
-                        @csrf
-                        @method('PUT')
-                        <input type="text"
-                               name="nome"
-                               value="{{ $deck->nome }}"
-                               class="border-b border-gray-300 text-lg font-bold w-full focus:outline-none focus:border-green-400"
-                               onchange="this.form.submit()"
-                               title="Clique e edite o nome do deck">
-                    </form>
-
+                    <!-- Botões de ação (editar/remover) -->
                     <div class="flex items-center space-x-2">
-                        <!-- Botão Ver Cards -->
-                        <a href="{{ route('deck.show', $deck->id) }}" 
+                        <a href="{{ route('card.edit', $card->id) }}"
                            class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
-                           Ver Cards
+                            Editar
                         </a>
 
-                        <!-- Botão deletar -->
-                        <form action="{{ route('deck.destroy', $deck->id) }}" method="POST"
-                              onsubmit="return confirm('Tem certeza que deseja deletar este deck?');">
+                        <form action="{{ route('card.destroy', $card->id) }}" method="POST"
+                              onsubmit="return confirm('Tem certeza que deseja deletar este card?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-red-500 hover:text-red-700">
@@ -67,7 +58,7 @@
                     </div>
                 </div>
             @empty
-                <p class="text-gray-500 text-center">Você ainda não possui decks.</p>
+                <p class="text-gray-500 text-center">Nenhum card neste deck.</p>
             @endforelse
         </div>
     </div>

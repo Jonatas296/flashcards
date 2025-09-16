@@ -7,24 +7,29 @@ use App\Models\Deck;
 use App\Http\Requests\StoreCardRequest;
 use App\Http\Requests\UpdateCardRequest;
 
-class CardController extends Controller {
-    /*
-    * Estudo de todas as cartas de todos os decks
+class CardController extends Controller
+{
+    /**
+     * Estudo da primeira carta de todos os decks
      */
-    public function studyAll() {
-        $cards = Card::all(); // todas as cartas
+    public function studyAll()
+    {
+        $card = Card::first(); // pega a primeira carta
 
-        return view('pages.study', ['cards' => $cards]);
+        if (!$card) {
+            return redirect()->route('dashboard')->with('error', 'Nenhuma carta para estudar!');
+        }
+
+        return view('pages.study', compact('card'));
     }
-    
 
     /**
      * Display a listing of the resource.
      */
-    public function index() {
-        //
+    public function index()
+    {
         $decks = Deck::where('user_id', auth()->id())->get();
-        $cards = Card::with('deck')->get(); // carrega todas as cartas com info do deck
+        $cards = Card::with('deck')->get();
 
         return view('pages.card', compact('cards', 'decks'));
     }
@@ -32,9 +37,9 @@ class CardController extends Controller {
     /**
      * Show the form for creating a new resource.
      */
-    public function create() {
-        //
-        $decks = Deck::where('user_id', auth()->id())->get(); // decks do usuário
+    public function create()
+    {
+        $decks = Deck::where('user_id', auth()->id())->get();
         return view('pages.card', compact('decks'));
     }
 
@@ -43,14 +48,12 @@ class CardController extends Controller {
      */
     public function store(StoreCardRequest $request)
     {
-        //
         $request->validate([
             'deck_id' => 'required|exists:decks,id',
             'front' => 'required|string|max:255',
             'back' => 'required|string|max:1000',
         ]);
 
-        // Criar carta
         Card::create([
             'deck_id' => $request->deck_id,
             'front' => $request->front,
@@ -60,43 +63,67 @@ class CardController extends Controller {
         return redirect()->route('card.index')->with('success', 'Carta criada com sucesso!');
     }
 
-    public function showBack($cardId) {
-        $cards = Card::where('id', $cardId)->get(); // pega a carta
-        session(['show_back' => true]); // marca que deve mostrar verso
-        return view('pages.study', compact('cards'));
-    }   
-
-
-
     /**
-     * Display the specified resource.
+     * Mostrar verso de uma carta específica
      */
-    public function show(Card $card)
+    public function showBack($cardId)
     {
-        //
+        $card = Card::find($cardId);
+
+        if (!$card) {
+            return redirect()->route('dashboard')->with('error', 'Carta não encontrada!');
+        }
+
+        session(['show_back' => true]);
+        return view('pages.study', compact('card'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Editar carta
      */
     public function edit(Card $card)
     {
-        //
+        $decks = Deck::where('user_id', auth()->id())->get();
+        return view('pages.card-edit', compact('card', 'decks'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Atualizar carta
      */
     public function update(UpdateCardRequest $request, Card $card)
     {
-        //
+        $request->validate([
+            'deck_id' => 'required|exists:decks,id',
+            'front' => 'required|string|max:255',
+            'back' => 'required|string|max:1000',
+        ]);
+
+        $card->update([
+            'deck_id' => $request->deck_id,
+            'front' => $request->front,
+            'back' => $request->back,
+        ]);
+
+        return redirect()->route('card.index')->with('success', 'Carta atualizada com sucesso!');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remover carta
      */
-    public function destroy(Card $card)
-    {
-        //
+    public function destroy(Card $card){
+        $deckId = $card->deck_id; // salva o id do deck do card
+        $card->delete();
+
+        return redirect()->route('deck.show', $deckId)
+        ->with('success', 'Carta removida com sucesso!');
     }
+
+    /**
+ * Listar cards de um deck específico
+ */
+    public function cardsByDeck(Deck $deck) {
+        $cards = $deck->cards()->get(); // pega todos os cards do deck
+        return view('pages.deck_card', compact('deck', 'cards'));
+    }
+
 }

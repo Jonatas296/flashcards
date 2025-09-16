@@ -21,6 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('/deck', DeckController::class);
+    
+    Route::get('/deck/{deck}/cards', [CardController::class, 'cardsByDeck'])->name('deck.cards');
+
 
     Route::resource('/card', CardController::class);
     
@@ -31,3 +34,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
