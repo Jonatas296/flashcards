@@ -1,13 +1,13 @@
 /* Fundo */
 .login-container {
-    height: 90vh; /* reduz altura */
+    height: 90vh; 
     background-color: #1e5674;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     font-family: Arial, sans-serif;
-    overflow: hidden; /* evita barra de rolagem */
+    overflow: hidden; 
 }
 
 .card {
@@ -53,11 +53,11 @@
 }
 
 .login-box h1 .flash {
-    color: #38d987; /* verde vibrante */
+    color: #38d987; 
 }
 
 .login-box h1 .cards {
-    color: #C7F9CC; /* verde claro igual botão */
+    color: #C7F9CC; 
 }
 
 .login-box h2 {
