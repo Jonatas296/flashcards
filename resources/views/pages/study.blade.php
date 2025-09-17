@@ -1,45 +1,20 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-3xl text-black leading-tight text-center">
-            Estudo de Cartas
-        </h2>
-    </x-slot>
+    <div class="max-w-3xl mx-auto py-12">
+        <div class="bg-white shadow rounded p-6 text-center">
 
-    <link rel="stylesheet" href="{{ asset('css/study.css') }}">
+            <h2 class="text-2xl font-bold mb-4">{{ $card->front }}</h2>
+            <p class="text-gray-600 mb-6">{{ $card->back }}</p>
 
-    <div class="py-12 max-w-4xl mx-auto text-center">
-
-        @if($card)
-            <form action="{{ route('history.store') }}" method="POST">
+            <form action="{{ route('history.store') }}" method="POST" class="flex justify-center gap-4">
                 @csrf
                 <input type="hidden" name="card_id" value="{{ $card->id }}">
 
-                <!-- Frente -->
-                <button type="button" class="flashcard"
-                        onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">
-                    <h1 class="flash-title">
-                        Flash<span>Cards</span>
-                    </h1>
-                    <p class="flash-text">{{ $card->front }}</p>
-                </button>
-
-                <!-- Verso -->
-                <div class="flashcard" style="display:none;">
-                    <h1 class="flash-title">
-                        Flash<span>Cards</span>
-                    </h1>
-                    <p class="flash-text">{{ $card->back }}</p>
-
-                    <div class="btn-group">
-                        <button type="submit" name="classification" value="1" class="btn">Fácil</button>
-                        <button type="submit" name="classification" value="2" class="btn">Bom</button>
-                        <button type="submit" name="classification" value="3" class="btn">Difícil</button>
-                        <button type="submit" name="classification" value="4" class="btn">Não sei</button>
-                    </div>
-                </div>
+                <button type="submit" name="classification" value="1" class="px-4 py-2 bg-red-500 text-white rounded">Não lembro</button>
+                <button type="submit" name="classification" value="2" class="px-4 py-2 bg-yellow-400 text-white rounded">Difícil</button>
+                <button type="submit" name="classification" value="3" class="px-4 py-2 bg-blue-500 text-white rounded">Bom</button>
+                <button type="submit" name="classification" value="4" class="px-4 py-2 bg-green-500 text-white rounded">Fácil</button>
             </form>
-        @else
-            <p class="no-card">{{ $message ?? 'Nenhuma carta disponível para estudo.' }}</p>
-        @endif
+
+        </div>
     </div>
 </x-app-layout>

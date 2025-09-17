@@ -11,9 +11,12 @@
     <div class="flashcards-container">
 
         <!-- Botão Adicionar -->
-        <div class="add-card">
-            <a href="{{ route('card.index') }}">Adicionar Cartão +</a>
+        <div class="add-card text-left">
+            <a href="{{ route('card.index') }}" class="inline-block px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700">
+                Adicionar Cartão +
+            </a>
         </div>
+
 
         <div class="content">
             <!-- Lado Esquerdo -->

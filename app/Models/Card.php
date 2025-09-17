@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model {
-    //
+
     use HasFactory;
 
-    // Adicione deck_id, front e back no fillable
+
     protected $fillable = [
         'deck_id',
         'front',
@@ -18,12 +18,14 @@ class Card extends Model {
     ];
 
     // Relacionamento com Deck
-    public function deck() {
+    public function deck()
+    {
         return $this->belongsTo(Deck::class);
     }
 
     // Relacionamento com History
-    public function histories() {
+    public function histories()
+    {
         return $this->hasMany(History::class);
     }
 }

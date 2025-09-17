@@ -92,6 +92,7 @@ class DeckController extends Controller
 
         // Deleta o deck
         $deck->delete();
+        $deck->cards()->delete(); //apaga as cartas do deck tambem
 
         // Redireciona com feedback
         return redirect()->route('deck.index')->with('success', 'Deck removido com sucesso!');

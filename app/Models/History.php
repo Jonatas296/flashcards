@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class History extends Model
 {
-    //
-
-     protected $fillable = [
+    protected $fillable = [
         'user_id',
         'card_id',
         'classification',
@@ -16,6 +14,7 @@ class History extends Model
         'next_review_at',
     ];
 
+    // Labels de classificação
     public const CLASSIFICATIONS = [
         1 => 'Fácil',
         2 => 'Bom',
@@ -23,16 +22,19 @@ class History extends Model
         4 => 'Não lembro',
     ];
 
-    public function card(){
+    public function card()
+    {
         return $this->belongsTo(Card::class);
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
     // Accessor para mostrar a classificação em texto
-    public function getClassificationLabelAttribute(){
+    public function getClassificationLabelAttribute()
+    {
         return self::CLASSIFICATIONS[$this->classification] ?? 'Desconhecida';
     }
 }
