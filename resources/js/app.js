@@ -5,6 +5,7 @@ import '../css/login.css'
 import '../css/deck.css'
 import '../css/register.css'
 import '../css/study.css'
+import '../css/deck_card.css'
 
 import Alpine from 'alpinejs';
 
