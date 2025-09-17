@@ -82,22 +82,46 @@
     color: #444;
 }
 
-/* Botão delete (X) */
+/* Container de botões no card */
+.card-icons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+/* Botão Ver cards */
+.icon-save {
+    background: #1e4d6b;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.icon-save:hover {
+    background: #16394e;
+}
+
+/* Botão delete (lixeira) */
 .delete-btn {
-    position: absolute;
-    right: 10px;
-    bottom: 10px; /* mais embaixo */
-    background: transparent;
+    background: #dc3545;
     border: none;
-    color: #999;
-    font-size: 1.2rem;
-    font-weight: bold;
+    color: #fff; /* corrigido: antes era #999 */
+    padding: 6px 10px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .delete-btn:hover {
-    color: #1e4d6b;
+    background: #c82333;
 }
 
 /* Nenhum card */
